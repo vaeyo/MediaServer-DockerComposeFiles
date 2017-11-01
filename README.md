@@ -60,11 +60,11 @@ My directory structure is like so. The compose file will make some of the folder
 mkdir -p /opt/media{/Kids\ Movies,/Kids\ TV\ Shows,/Movies,/TV\ Shows}
 ```
 
-#### Either run my ghetto little script that doesnt have checks or 
+#### Either run my ghetto little script that doesnt have checks
   
-  *      initial.setup.sh       *
-
-           ## or
+initial.setup.sh         
+    
+# or
 
 #### Manually edit the following files:
    * /apps/id.env

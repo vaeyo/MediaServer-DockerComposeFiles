@@ -56,9 +56,9 @@ My directory structure is like so. The compose file will make some of the folder
 
 ##### I normally run my setup in /srv or /opt but its up to you as long as the level structure remains the same:
 
-```mkdir -p /opt/downloads{/complete,/convert/movies,/convert/tv,/incomplete/movies,/incomplete/tv,/watch/tv,/watch/movies}
-mkdir -p /opt/media{/Kids\ Movies,/Kids\ TV\ Shows,/Movies,/TV\ Shows}
-```
+    mkdir -p /opt/downloads{/complete,/convert/movies,/convert/tv,/incomplete/movies,/incomplete/tv,/watch/tv,/watch/movies} 
+
+    mkdir -p /opt/media{/Kids\ Movies,/Kids\ TV\ Shows,/Movies,/TV\ Shows}
 
 #### Either run my ghetto little script that doesnt have checks
   

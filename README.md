@@ -1,7 +1,8 @@
-This setup provides each container a host directory for config files. Each app has its own docker-compose file in its directory and an env file if its environmental variables are excessive
+This setup provides each container a host directory for config files. Each app has its own docker-compose file in its directory and an env file if its environmental variables are excessive.
 
-My directory structure is like so. Only have to make the Media/Download folders as the apps folder setup will be git cloned.
-
+I have a defined network which was mostly for the reverse proxy. It probably doesnt benefit in any way but you will have to create the network before container creation.  
+            ```docker network create --driver=bridge media```
+My directory structure is like so. The compose file will make some of the folders but the folder structure can be created with this: 
 ```
 ├── apps
 │   ├── cardigann
@@ -50,12 +51,24 @@ My directory structure is like so. Only have to make the Media/Download folders 
     └── TV Shows
 ```
 
-#### Either run my ghetto little script that doesnt have checks or manually edit the following files:
+##### I normally run my setup in /srv or /opt but its up to you as long as the level structure remains the same:
+
+```mkdir -p /opt/downloads{/complete,/convert/movies,/convert/tv,/incomplete/movies,/incomplete/tv,/watch/tv,/watch/movies}
+mkdir -p /opt/media{/Kids\ Movies,/Kids\ TV\ Shows,/Movies,/TV\ Shows}
+```
+
+#### Either run my ghetto little script that doesnt have checks or 
+  
+  *      initial.setup.sh       *
+
+           ## or
+
+#### Manually edit the following files:
    * /apps/id.env
    * /apps/emby/id.env
    * /apps/letsencrypt/id.env
    * /apps/letsencrypt/nginx/site-confs/default needs to have domain corrected. 
-   * Wetty/Shellinabox have some crazy permissions on their docker-compose.yml. Change those to 	 your preference.
+   * Wetty/Shellinabox have some crazy permissions on their docker-compose.yml. Change those to your preference.
    
 ### Compose File Setup
 ----------------------

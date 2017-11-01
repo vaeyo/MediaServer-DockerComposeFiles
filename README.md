@@ -2,6 +2,7 @@ This setup provides each container a host directory for config files. Each app h
 
 My directory structure is like so. Only have to make the Media/Download folders as the apps folder setup will be git cloned.
 
+```
 ├── apps
 │   ├── cardigann
 │   ├── couchpotato
@@ -47,7 +48,7 @@ My directory structure is like so. Only have to make the Media/Download folders 
     ├── Kids TV Shows
     ├── Movies
     └── TV Shows
-
+```
 
  * To set this up youll first need to edit the following files to your info:
   * /apps/id.env

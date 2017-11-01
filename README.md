@@ -1,8 +1,11 @@
 This setup provides each container a host directory for config files. Each app has its own docker-compose file in its directory and an env file if its environmental variables are excessive.
 
 I have a defined network which was mostly for the reverse proxy. It probably doesnt benefit in any way but you will have to create the network before container creation.  
+            
             ```docker network create --driver=bridge media```
+            
 My directory structure is like so. The compose file will make some of the folders but the folder structure can be created with this: 
+
 ```
 ├── apps
 │   ├── cardigann

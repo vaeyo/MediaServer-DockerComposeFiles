@@ -50,7 +50,7 @@ My directory structure is like so. Only have to make the Media/Download folders 
     └── TV Shows
 ```
 
-#### Edit the following files to your info:
+#### Either run my ghetto little script that doesnt have checks or manually edit the following files:
    * /apps/id.env
    * /apps/emby/id.env
    * /apps/letsencrypt/id.env

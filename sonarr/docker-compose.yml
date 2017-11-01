@@ -1,0 +1,20 @@
+version: '2'
+
+services:
+  sonarr:
+    image: linuxserver/sonarr
+    container_name: sonarr
+    restart: always
+    ports:
+      - 8989:8989
+    volumes:
+      - .:/config
+      - ../../media:/tv
+      - ../../downloads:/downloads
+      - /etc/localtime:/etc/localtime:ro
+    env_file: ../id.env
+      
+networks:
+  default:
+    external:
+      name: media

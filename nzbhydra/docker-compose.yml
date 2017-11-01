@@ -1,0 +1,18 @@
+version: '2'
+
+services:
+  nzbhydra:
+    image: linuxserver/nzbhydra
+    container_name: nzbhydra
+    restart: always
+    ports:
+      - 5075:5075
+    volumes:
+      - .:/config
+      - ../../downloads:/downloads
+    env_file: ../id.env
+
+networks:
+  default:
+    external:
+      name: media

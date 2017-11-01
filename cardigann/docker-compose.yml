@@ -1,0 +1,17 @@
+version: '2'
+
+services:
+  cardigann:
+    image: linuxserver/cardigann
+    container_name: cardigann
+    restart: always
+    ports:
+      - 5060:5060
+    volumes:
+      - .:/config
+    env_file: ../id.env
+
+networks:
+  default:
+    external:
+      name: media

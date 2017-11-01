@@ -1,0 +1,20 @@
+version: '2'
+
+services:
+  sabnzbd:
+    image: linuxserver/sabnzbd
+    container_name: sabnzbd
+    restart: always
+    ports:
+      - 8080:8080
+      - 9090:9090
+    volumes:
+      - .:/config
+      - ../../downloads:/downloads
+      - ../../downloads/incomplete:/incomplete-downloads
+    env_file: id.env
+
+networks:
+  default:
+    external:
+      name: media

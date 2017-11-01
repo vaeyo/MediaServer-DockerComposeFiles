@@ -1,0 +1,20 @@
+version: '2'
+
+services:
+  letsencrypt:
+    image: linuxserver/letsencrypt
+    container_name: letsencrypt
+    restart: always
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - .:/config
+    env_file:
+      - id.env
+      - ../id.env
+
+networks:
+  default:
+    external:
+      name: media

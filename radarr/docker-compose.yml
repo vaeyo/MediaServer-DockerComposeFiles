@@ -1,0 +1,20 @@
+version: '2'
+
+services:
+  radarr:
+    image: linuxserver/radarr
+    container_name: radarr
+    restart: always
+    ports:
+      - 7878:7878
+    volumes:
+      - .:/config
+      - ../../media:/movies
+      - ../../downloads:/downloads
+      - /etc/localtime:/etc/localtime:ro
+    env_file: ../id.env
+      
+networks:
+  default:
+    external:
+      name: media

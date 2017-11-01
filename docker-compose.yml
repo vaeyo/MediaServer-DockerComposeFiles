@@ -1,0 +1,72 @@
+version: '2'
+
+services:
+  emby:
+    extends:
+      file: emby/docker-compose.yml
+      service: emby
+  plex:
+    extends:
+      file: plex/docker-compose.yml
+      service: plex
+  organizr:
+    extends:
+      file: organizr/docker-compose.yml
+      service: organizr
+  ombi:
+    extends:
+      file: ombi/docker-compose.yml
+      service: ombi
+  plexpy:
+    extends:
+      file: plexpy/docker-compose.yml
+      service: plexpy
+  sonarr:
+    extends:
+      file: sonarr/docker-compose.yml
+      service: sonarr
+  radarr:
+    extends:
+      file: radarr/docker-compose.yml
+      service: radarr
+  nzbget:
+    extends:
+      file: nzbget/docker-compose.yml
+      service: nzbget
+  rtorrent:
+    extends:
+      file: rtorrent/docker-compose.yml
+      service: rtorrent
+  jackett:
+    extends:
+      file: Jackett/docker-compose.yml
+      service: jackett
+  nzbhydra:
+    extends:
+      file: nzbhydra/docker-compose.yml
+      service: nzbhydra
+  letsencrypt:
+    extends:
+      file: letsencrypt/docker-compose.yml
+      service: letsencrypt
+  portainer:
+    extends:
+      file: portainer/docker-compose.yml
+      service: portainer
+  filebot:
+    extends:
+      file: filebot/docker-compose.yml
+      service: filebot
+  handbrake:
+    extends:
+      file: handbrake/docker-compose.yml
+      service: handbrake
+  wetty:
+    extends:
+      file: wetty/docker-compose.yml
+      service: wetty
+
+networks:
+  default:
+    external:
+      name: media

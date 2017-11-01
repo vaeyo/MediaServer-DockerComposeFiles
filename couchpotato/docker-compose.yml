@@ -1,0 +1,21 @@
+version: '2'
+
+services:
+  couchpotato:
+    image: linuxserver/couchpotato
+    container_name: couchpotato
+    restart: always
+    ports:
+      - 5050:5050
+    volumes:
+      - .:/config
+      - ../../media:/movies
+      - ../../downloads:/downloads
+    environment:
+      - UMASK_SET=022
+    env_file: ../id.env
+
+networks:
+  default:
+    external:
+      name: media

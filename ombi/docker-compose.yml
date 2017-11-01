@@ -1,0 +1,18 @@
+version: '2'
+
+services:
+  ombi:
+    image: lsiodev/ombi-preview
+    container_name: ombi
+    restart: always
+    ports:
+      - 3579:3579
+    volumes:
+      - .:/config
+      - /etc/localtime:/etc/localtime:ro
+    env_file: ../id.env
+
+networks:
+  default:
+    external:
+      name: media

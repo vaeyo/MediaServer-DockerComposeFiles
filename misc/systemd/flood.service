@@ -1,0 +1,14 @@
+
+[Unit]
+Description=Flood Web Ui
+After=network.target
+
+[Service]
+User=p0rtal
+Group=p0rtal
+
+WorkingDirectory=/opt/flood
+ExecStart=/usr/bin/npm start --production /opt/flood
+
+[Install]
+WantedBy=multi-user.target

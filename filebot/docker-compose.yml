@@ -1,0 +1,17 @@
+version: '2'
+
+services:
+  filebot:
+    image: coppit/filebot
+    container_name: filebot
+    restart: always
+    volumes:
+      - .:/config
+      - ../../media:/output
+      - ../../downloads/complete:/input
+    env_file: ../id.env
+    
+networks:
+  default:
+    external:
+      name: media

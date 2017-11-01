@@ -1,0 +1,39 @@
+upstream radarr { server localhost:7878; }
+
+server {
+	listen 80;
+	server_name radarr.*;
+	return 301 https://$host$request_uri;
+}
+
+# main server block
+server {
+	listen 443 ssl;
+
+	root /config/www;
+	index index.html index.htm index.php;
+
+	server_name radarr.*;
+
+	ssl_certificate /config/keys/letsencrypt/fullchain.pem;
+	ssl_certificate_key /config/keys/letsencrypt/privkey.pem;
+	ssl_dhparam /config/nginx/dhparams.pem;
+
+	ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
+	ssl_ciphers "EECDH+AESGCM:EDH+AESGCM:AES256+EECDH:AES256+EDH";
+
+	ssl_prefer_server_ciphers on;
+	ssl_session_timeout 5m;
+	ssl_session_cache shared:SSL:50m;
+	ssl_session_tickets off;
+
+	client_max_body_size 0;
+
+	location / {
+		proxy_pass http://radarr;
+		include /config/nginx/proxy.conf;
+    proxy_bind $server_addr;
+    proxy_set_header X-Forwarded-Host $server_name;
+    proxy_set_header X-Forwarded-Ssl     on;
+	}
+  }

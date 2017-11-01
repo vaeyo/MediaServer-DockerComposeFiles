@@ -1,0 +1,20 @@
+version: '2'
+
+services:
+  handbrake:
+    image: jlesage/handbrake
+    container_name: handbrake
+    restart: always
+    volumes:
+      - ./config:/config:rw
+      - ../../:/storage:ro
+      - ../../downloads/convert:/watch:rw
+      - ../../downloads/complete:/output
+    cap_add:
+      - SYS_NICE
+    env_file: id.env
+
+networks:
+  default:
+    external:
+      name: media

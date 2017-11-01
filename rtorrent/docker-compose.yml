@@ -1,0 +1,20 @@
+version: '2'
+
+services:
+  rtorrent:
+    image: vaeyo/rtorrent
+    container_name: rtorrent
+    restart: always
+    ports:
+      - 8800:80
+      - 6881:6881/udp
+      - 55000:55000
+    volumes:
+      - .:/config
+      - ../../downloads:/downloads
+    env_file: ../id.env
+
+networks:
+  default:
+    external:
+      name: media

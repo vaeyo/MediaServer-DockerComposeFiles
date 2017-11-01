@@ -1,0 +1,17 @@
+version: '2'
+
+services:
+  organizr:
+    image: lsiocommunity/organizr
+    container_name: organizr
+    restart: always
+    ports:
+      - 8888:80
+    volumes:
+      - .:/config
+    env_file: ../id.env
+    
+networks:
+  default:
+    external:
+      name: media

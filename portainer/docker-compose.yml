@@ -1,0 +1,18 @@
+version: '2'
+
+services:
+  portainer:
+    image: portainer/portainer
+    container_name: portainer
+    restart: always
+    ports:
+      - 9000:9000
+    volumes:
+      - .:/data
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    env_file: ../id.env
+
+networks:
+  default:
+    external:
+      name: media

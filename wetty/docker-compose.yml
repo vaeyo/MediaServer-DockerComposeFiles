@@ -1,0 +1,12 @@
+version: '2'
+
+services:
+  wetty:
+    image: krishnasrinivas/wetty
+    container_name: wetty
+    restart: always
+    ports:
+      - 4200:3000
+    environment:
+      PGID: '0'
+      PUID: '0'

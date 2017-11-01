@@ -1,0 +1,26 @@
+version: '2'
+
+services:
+  emby:
+    container_name: emby
+    environment:
+      APP_GID: -gid-
+      APP_UID: -uid-
+      EDGE: '1'
+      TZ: -tz-
+      UMASK: '000'
+    image: emby/embyserver
+    ports:
+      - 1901:1900/udp
+      - 7359:7359/udp
+      - 8096:8096/tcp
+      - 8920:8920/tcp
+    restart: always
+    volumes:
+      - /srv/apps/emby:/config:rw
+      - /srv/media:/opt/media:rw
+
+networks:
+  default:
+    external:
+      name: media

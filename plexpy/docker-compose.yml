@@ -1,0 +1,18 @@
+version: '2'
+
+services:
+  plexpy:
+    image: linuxserver/plexpy
+    container_name: plexpy
+    restart: always
+    ports:
+      - 8181:8181
+    volumes:
+      - .:/config
+      - ../plex/Library/Application\ Support/Plex\ Media\ Server/Logs/:/logs:ro
+    env_file: ../id.env
+
+networks:
+  default:
+    external:
+      name: media

@@ -18,7 +18,7 @@ sudo find . -type f -name "*.env" -exec sed -i "s/-uid-/"$uid"/g" '{}' \;
 # GID
 sudo find . -type f -name "*.env" -exec sed -i "s/-gid-/"$gid"/g" '{}' \;
 # TZ
-sudo find . -type f -name "*.env" -exec sed -i "s/-tz-/"$tz"/g" '{}' \;
+sudo find . -type f -name "*.env" -exec sed -i "s%-tz-%"$tz"%g" '{}' \;
 # Email
 sudo find . -type f -exec sed -i "s/-email-/"$emails"/g" '{}' \;
 # domain

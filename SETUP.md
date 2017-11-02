@@ -1,9 +1,17 @@
-This setup provides each container a host directory for config files. Each app has its own docker-compose file in its directory and an env file if its environmental variables are excessive.
+#### Disclaimer: This is a project I just started working on. Its a very basic concept thats not really that intricate so it will more or less work without any major issues. Good chance there are some small tweaks that need to be made here and there though. 
 
-I have a defined network which was mostly for the reverse proxy. It probably doesnt benefit in any way but you will have to create the network before container creation.  
-            
-            ```docker network create --driver=bridge media```
-            
+##### TO DO Still:
+   * Finish getting the rest of the compose files setup so there are options for each category.
+   * Check the created docker network and see improve
+   * Possibly automate some of creation/customizing similar to something like Atomic with automation and gui. 
+
+##### The point/goal of this project is too hopefully help introduce people to docker-compose. Its an amazing tool that with one file and a simple ```docker-compose up``` command can take a fresh server to a fully automated home theater pc in minutes. However, I found the gap/learning curve between the initial docker run to docker-compose to be quite big and intimidating when I was initially learning. This hopefully will simplify it and help bridge that gap for other people as well.
+
+This setup provides each container a host directory for config files. Each app has its own docker-compose file in its directory and an environmental variable(.env) file if its anything app specific is necessary. This project lets you pick and choose the apps you want and then will combine the individual compose files youve chosen into one main compose file for your entire setup. 
+
+This setup uses a named docker network to ensure all containers are on the same network. Prior to any container creation we need to create that network with ```docker network create --driver=bridge media```.
+
+         
 My directory structure is like so. The compose file will make some of the folders but the folder structure can be created with this: 
 
 ```

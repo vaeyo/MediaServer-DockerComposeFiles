@@ -2,11 +2,16 @@
 
 ##### TO DO Still:
    * Finish getting the rest of the compose files setup so there are options for each category.
-   * Check the created docker network and see improve
+   * Redo the setup script. Current one is very simple and will most likely throw errors with spaces/symbols etc.
+   * Docker network needs to be looked at for improvements. 
    * Possibly automate some of creation/customizing similar to something like Atomic with automation and gui. 
 
-##### The point/goal of this project is too hopefully help introduce people to docker-compose. Its an amazing tool that with one file and a simple ```docker-compose up``` command can take a fresh server to a fully automated home theater pc in minutes. However, I found the gap/learning curve between the initial docker run to docker-compose to be quite big and intimidating when I was initially learning. This hopefully will simplify it and help bridge that gap for other people as well.
+##### Project Goal/Direction
+I started this too hopefully help introduce people to docker-compose. Its an amazing tool that with one file and a simple ```docker-compose up``` command can take a fresh server to a fully automated home theater pc in minutes. However, I found the gap/learning curve between the initial docker run to docker-compose to be quite big and intimidating when I was initially learning. This hopefully will simplify it and help bridge that gap for other people as well.
 
+###### This should work with both Windows and Linux due to the paths being relative instead of absolute. If you are on Windows all you should have to do is add ```COMPOSE_CONVERT_WINDOWS_PATHS=0``` to the primary id.env. 
+
+### Setup
 This setup provides each container a host directory for config files. Each app has its own docker-compose file in its directory and an environmental variable(.env) file if its anything app specific is necessary. This project lets you pick and choose the apps you want and then will combine the individual compose files youve chosen into one main compose file for your entire setup. 
 
 This setup uses a named docker network to ensure all containers are on the same network. Prior to any container creation we need to create that network with ```docker network create --driver=bridge media```.
@@ -68,13 +73,8 @@ My directory structure is like so. The compose file will make some of the folder
 
     mkdir -p /opt/media{/Kids\ Movies,/Kids\ TV\ Shows,/Movies,/TV\ Shows}
 
-#### Either run my ghetto little script that doesnt have checks
-  
-initial.setup.sh         
-    
-# or
-
-#### Manually edit the following files:
+#### Manually edit the following files: 
+###### There is a very basic script you can use but its absolutely not foolproof at this moment.
    * /apps/id.env
    * /apps/emby/id.env
    * /apps/letsencrypt/id.env

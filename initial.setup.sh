@@ -12,7 +12,7 @@ echo "i.e example.com or mysite.com, avoid www.example.com or https:// etc.."
 read -p "Enter the domain youd like to secure and press [Enter]: " domain
 
 # Make the edits
-----------------
+# --------------
 # UID
 sudo find . -type f -name "*.env" -exec sed -i "s/-uid-/"$uid"/g" '{}' \;
 # GID

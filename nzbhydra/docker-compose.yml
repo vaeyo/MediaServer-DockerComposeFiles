@@ -2,7 +2,7 @@ version: '2'
 
 services:
   nzbhydra:
-    image: linuxserver/nzbhydra
+    image: linuxserver/hydra
     container_name: nzbhydra
     restart: always
     ports:

@@ -1,4 +1,5 @@
 FROM lsiobase/alpine:3.6
+MAINTAINER vaeyo
 
 # install packages
 RUN \
@@ -18,19 +19,17 @@ RUN \
 	php7-mbstring \
 	php7-pear \
 	rtorrent \
+	nodejs-npm \
 	screen \
 	tar \
 	unrar \
 	unzip \
 	wget \
 	zip && \
- apk add --no-cache --virtual=build-dependencies \
- 	git && \
  apk add --no-cache \
 	--repository http://nl.alpinelinux.org/alpine/edge/community \
 	mediainfo && \
-
-# install webui
+# install ruTorrent
  mkdir -p \
 	/usr/share/webapps/rutorrent \
 	/defaults/rutorrent-conf && \
@@ -44,32 +43,30 @@ RUN \
 	/defaults/rutorrent-conf/ && \
  rm -rf \
 	/defaults/rutorrent-conf/users && \
-# Rutorrent ratiocolor, material theme, mobile plugins 
- git clone https://github.com/nelu/rutorrent-thirdparty-plugins /tmp/rutorrent-thirdparty-plugins && \
-    mv /tmp/rutorrent-thirdparty-plugins/* \
- /usr/share/webapps/rutorrent/plugins/ && \
-    git clone https://github.com/xombiemp/rutorrentMobile.git \
- /usr/share/webapps/rutorrent/plugins/mobile && \
-    git clone https://github.com/Phlooo/ruTorrent-MaterialDesign.git \
- /usr/share/webapps/rutorrent/plugins/theme/themes/materialdesign && \
-    wget -qNO /tmp/ratio.zip http://git.io/71cumA && \
- unzip -qo /tmp/ratio.zip -d /usr/share/webapps/rutorrent/plugins && \
-    sed -i 's/changeWhat = "cell-background";/changeWhat = "font";/g' \
- /usr/share/webapps/rutorrent/plugins/ratiocolor/init.js && \
-
+# install flood
+ mkdir -p \
+	/app/flood && \
+ flood_tag=$(curl -sX GET "https://api.github.com/repos/jfurrow/flood/releases/latest" \
+	| awk '/tag_name/{print $4;exit}' FS='[""]') && \
+ curl -o \
+ /tmp/flood.tar.gz -L \
+	"https://github.com/jfurrow/flood/archive/${flood_tag}.tar.gz" && \
+ tar xf \
+ /tmp/flood.tar.gz -C \
+	/app/flood --strip-components=1 && \
+ cd /app/flood && \
+ npm install --production && \
 # cleanup
- apk del --purge \
-	build-dependencies && \
  rm -rf \
 	/etc/nginx/conf.d/default.conf \
 	/tmp/* && \
-
 # fix logrotate
  sed -i "s#/var/log/messages {}.*# #g" /etc/logrotate.conf
 
 # add local files
 COPY root/ /
+COPY config.js /app/flood/
 
 # ports and volumes
-EXPOSE 80 6881 55000
+EXPOSE 80 3000
 VOLUME /config /downloads

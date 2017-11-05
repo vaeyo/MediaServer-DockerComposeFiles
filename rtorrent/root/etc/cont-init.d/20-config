@@ -4,7 +4,7 @@
 mkdir -p \
 	/config{/flood/db,/log/nginx,/log/rtorrent,/log/rutorrent,/nginx,/php,/rtorrent/rtorrent_sess,/rutorrent/settings/users} \
 	/config/rutorrent/profiles{/settings,/torrents,/users,/tmp} \
-	/downloads{/complete,/incoming,/watch} \
+	/downloads{/complete,/incomplete,/watch} \
 	/run{/nginx,/php} \
 	/var/lib/nginx/tmp/client_body \
 	/var/tmp/nginx
@@ -24,12 +24,6 @@ cd "${PREV_DIR}" || exit
 
 [[ ! -e /config/nginx/nginx.conf ]] && \
 	cp /defaults/nginx.conf /config/nginx/nginx.conf
-
-[[ ! -e /config/flood/config.js ]] && \
-	cp /usr/share/webapps/flood/config.js /config/flood/config.js
-
-cp  /config/flood/config.js /usr/share/webapps/flood/config.js
-
 
 [[ ! -e /config/rtorrent/rtorrent.rc ]] && \
 	cp /defaults/rtorrent.rc /config/rtorrent/rtorrent.rc
@@ -53,12 +47,13 @@ cp /config/php/php.ini /etc/php7/php.ini
 # permissions
 chown abc:abc \
 	/downloads \
-	/downloads{/completed,/incoming,/watched}
+	/downloads{/complete,/incomplete,/watch}
 
 chown -R abc:abc \
+	/app \
 	/config \
 	/run \
-	/usr/share/webapps{/rutorrent,/flood} \
+	/usr/share/webapps/rutorrent \
 	/var/lib/nginx \
 	/var/tmp/nginx \
 	/var/www/localhost/rutorrent

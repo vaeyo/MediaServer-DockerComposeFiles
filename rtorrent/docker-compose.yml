@@ -6,15 +6,14 @@ services:
     container_name: rtorrent
     restart: always
     ports:
-      - 8800:80
+      - 3000:3000
       - 6881:6881/udp
-      - 55000:55000
+      - 8080:80
+      - 50000:5000
     volumes:
-      - .:/config
-      - ../../downloads:/downloads
-    env_file: ../id.env
-
-networks:
-  default:
-    external:
-      name: media
+      - ./config:/config
+      - /downloads:/downloads
+    environment:
+      PUID: 18
+      PGID: 18
+      TZ: America/Denver

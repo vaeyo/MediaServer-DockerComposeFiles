@@ -14,6 +14,6 @@ services:
       - ./config:/config
       - /downloads:/downloads
     environment:
-      PUID: 18
-      PGID: 18
-      TZ: America/Denver
+      PUID:-gid-
+      PGID:-uid-
+      TZ:-tz-

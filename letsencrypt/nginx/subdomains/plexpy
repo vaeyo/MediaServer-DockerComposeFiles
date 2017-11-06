@@ -1,4 +1,4 @@
-upstream plexpy { server localhost:8-uid-1; }
+upstream plexpy { server localhost:8181; }
 
 server {
 	listen 80;

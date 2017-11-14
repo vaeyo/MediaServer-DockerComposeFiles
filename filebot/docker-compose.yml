@@ -1,0 +1,20 @@
+version: '2'
+
+services:
+  filebot:
+    image: coppit/filebot
+    container_name: filebot
+    restart: always
+    volumes:
+      - /srv/appdata/filebot:/config
+      - /srv/media:/output
+      - /srv/downloads/complete:/input
+    environment:
+      PUID: ${userid}
+      PGID: ${groupid}
+      TZ: ${time}
+
+networks:
+    media:
+        external: true            
+        

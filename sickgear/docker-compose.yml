@@ -1,0 +1,22 @@
+version: '2'
+
+services:
+    sickgear:
+        image: ressu/sickgear
+        container_name: sickgear
+        restart: always
+        networks:
+            - media
+        ports:
+            - 8001:8081
+        volumes:
+            - /srv/appdata/sickgear:/data
+            - /srv/media:/tv
+        environments:
+            - APP_UID=${userid}
+            - APP_GID=${groupid}
+            - TZ=${time} 
+
+networks:
+    media:
+        external: true

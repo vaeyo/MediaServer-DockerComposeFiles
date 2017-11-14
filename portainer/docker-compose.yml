@@ -1,0 +1,22 @@
+version: '2'
+
+services:
+    portainer:
+        image: portainer/portainer
+        container_name: portainer
+        restart: always
+        networks:
+            - media        
+        ports:
+            - 9000:9000
+        volumes:
+            - /srv/appdata/portainer:/data
+            - /var/run/docker.sock:/var/run/docker.sock:ro
+        environment:
+            PUID: ${userid}
+            PGID: ${groupid}
+            TZ: ${time}
+
+networks:
+    media:
+        external: true                    

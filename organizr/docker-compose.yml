@@ -1,0 +1,22 @@
+version: '2'
+
+services:
+    organizr:
+        image: lsiocommunity/organizr
+        container_name: organizr
+        restart: always
+        networks:
+            - media        
+        ports:
+            - 8811:80
+            - 8443:443
+        volumes:
+            - /srv/appdata/organizr:/config
+        environment:
+            PUID: ${userid}
+            PGID: ${groupid}
+            TZ: ${time}
+
+networks:
+    media:
+        external: true        

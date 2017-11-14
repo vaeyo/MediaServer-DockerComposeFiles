@@ -1,0 +1,16 @@
+version: '2'
+
+services:
+    deluge:
+        image: linuxserver/deluge
+        container_name: deluge
+        network_mode: host
+        restart: always
+        volumes:
+            - /srv/appdata/deluge:/config
+            - /srv/downloads:/downloads
+        environment:
+            PUID: ${userid}
+            PGID: ${groupid}
+            TZ: ${time}
+            UMASK_SET: 022

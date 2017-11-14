@@ -1,0 +1,26 @@
+version: '2'
+
+services:
+    ubooquity:
+        image: linuxserver/ubooquity
+        container_name: ubooquity
+        restart: always
+        networks:
+            - media
+        ports:
+            - 2202:2202
+            - 2203:2203
+        volumes:
+            - /srv/appdata/ubooquity:/config
+            - /srv/media/books:/books
+            - /srv/media/comics:/comics
+        environment:
+            PUID: ${userid}
+            PGID: ${groupid}
+            TZ: ${time}
+            MAXMEM: 1024MB
+
+networks:
+    media:
+        external: true            
+                

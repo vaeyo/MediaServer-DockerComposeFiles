@@ -1,0 +1,24 @@
+version: '2'
+
+services:
+    mylar:
+        image: linuxserver/mylar
+        container_name: mylar
+        restart: always
+        networks:
+            - media
+        ports:
+            - 8090:8090
+        volumes:
+            - /srv/appdata/mylar:/config
+            - /srv/downloads:/downloads
+            - /srv/media/comics:/comics
+        environment:
+            PUID: ${userid}
+            PGID: ${groupid}
+            TZ: ${time}
+
+networks:
+    media:
+        external: true            
+                    

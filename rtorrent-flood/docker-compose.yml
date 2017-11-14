@@ -1,0 +1,22 @@
+version: '2'
+
+services:
+    rtorrent:
+        image: linuxserver/flood
+        container_name: rtorrent
+        restart: always
+        networks:
+            - media        
+        ports:
+            - 3000:3000
+        volumes:
+            - /srv/appdata/rtorrent:/config
+            - /srv/downloads:/downloads
+        environment:
+            PUID: ${userid}
+            PGID: ${groupid}
+            TZ: ${time}
+
+networks:
+    media:
+        external: true              

@@ -1,0 +1,24 @@
+version: '2'
+
+services:
+    watcher:
+        image: linuxserver/watcher
+        container_name: watcher
+        restart: always
+        networks:
+            - media        
+        ports:
+            - 9090:9090
+        volumes:
+            - /srv/appdata/watcher:/config
+            - /srv/downloads:/downloads
+            - /srv/media:/movies
+            - /etc/localtime:/etc/localtime:ro
+        environment:
+            PUID: ${userid}
+            PGID: ${groupid}
+            TZ: ${time}
+
+networks:
+    media:
+        external: true  

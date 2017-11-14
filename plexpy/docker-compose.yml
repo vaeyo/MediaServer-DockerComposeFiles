@@ -1,0 +1,22 @@
+version: '2'
+
+services:
+    plexpy:
+        image: linuxserver/plexpy
+        container_name: plexpy
+        restart: always
+        networks:
+            - media        
+        ports:
+            - 8181:8181
+        volumes:
+            - /srv/appdata/plexpy:/config
+            - "/srv/appdata/plex/Library/Application Support/Plex Media Server/Logs:/logs:ro"
+        environment:
+            PUID: ${userid}
+            PGID: ${groupid}
+            TZ: ${time}
+
+networks:
+    media:
+        external: true

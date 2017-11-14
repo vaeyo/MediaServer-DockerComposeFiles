@@ -1,0 +1,25 @@
+version: '2.1'
+
+services:
+    couchpotato:
+        image: linuxserver/couchpotato
+        container_name: couchpotato
+        restart: always
+        networks:
+            - media
+        ports:
+            - 5050:5050
+        volumes:
+            - /srv/appdata/couchpotato:/config
+            - /srv/downloads/movies:/downloads
+            - /srv/media/movies:/movies
+            - /etc/localtime:/etc/localtime:ro
+        environment:
+            PUID: ${userid}
+            PGID: ${groupid}
+            TZ: ${time}        
+            UMASK_SET: 022
+
+networks:
+    media:
+        external: true

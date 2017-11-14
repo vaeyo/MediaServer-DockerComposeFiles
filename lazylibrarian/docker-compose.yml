@@ -1,0 +1,24 @@
+version: '2'
+
+services:
+    lazylibrarian:
+        image: linuxserver/lazylibrarian
+        container_name: lazylibrarian
+        restart: always
+        networks:
+            - media
+        ports:
+            - 5299:5299
+        volumes:
+            - /srv/appdata/lazylibrarian:/config
+            - /srv/downloads:/downloads
+            - /srv/media/books:/books
+        environment:
+            PUID: ${userid}
+            PGID: ${groupid}
+            TZ: ${time}
+
+networks:
+    media:
+        external: true            
+                    

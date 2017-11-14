@@ -1,0 +1,24 @@
+version: '2'
+
+services:
+    radarr:
+        image: linuxserver/radarr
+        container_name: radarr
+        restart: always
+        networks:
+            - media        
+        ports:
+            - 7878:7878
+        volumes:
+            - /srv/appdata/radarr:/config
+            - /srv/media:/movies
+            - /srv/downloads:/downloads
+            - /etc/localtime:/etc/localtime:ro
+        environment:
+            PUID: ${userid}
+            PGID: ${groupid}
+            TZ: ${time}
+
+networks:
+    media:
+        external: true                    

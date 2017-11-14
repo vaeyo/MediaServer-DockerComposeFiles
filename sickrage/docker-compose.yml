@@ -1,0 +1,23 @@
+version: '2'
+
+services:
+    sickrage:
+        image: linuxserver/sickrage
+        container_name: sickrage
+        restart: always
+        networks:
+            - media        
+        ports:
+            - 8081:8081
+        volumes:
+            - /srv/appdata/sickrage:/config
+            - /srv/downloads:/downloads
+            - /srv/media:/tv
+        environment:
+            PUID: ${userid}
+            PGID: ${groupid}
+            TZ: ${time}
+
+networks:
+    media:
+        external: true              

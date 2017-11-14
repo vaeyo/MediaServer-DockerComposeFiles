@@ -1,0 +1,22 @@
+version: '2'
+
+services:
+    nzbget:
+        image: linuxserver/nzbget
+        container_name: nzbget
+        restart: always
+        networks:
+            - media        
+        ports:
+            - 6789:6789
+        volumes:
+            - /srv/appdata/nzbget:/config
+            - /srv/downloads:/downloads
+        environment:
+            PUID: ${userid}
+            PGID: ${groupid}
+            TZ: ${time}
+
+networks:
+    media:
+        external: true

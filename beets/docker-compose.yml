@@ -1,0 +1,18 @@
+version: '2'
+services: 
+  beets:
+    image: linuxserver/beets
+    container_name: beets
+    restart: always
+    networks:
+        - media
+    ports:
+        - 1234:1234
+    volumes:
+        - /srv/appdata/beets:/config
+
+networks:
+    media:
+        external: true
+        
+       

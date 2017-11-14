@@ -1,0 +1,46 @@
+version: '2'
+
+services:
+    guac-db:
+        image: postgres
+        container_name: guac-db
+        restart: always
+        networks:
+            - media
+        volumes:
+            - ./init:/docker-entrypoint-initdb.d
+            - /srv/appdata/guacamole:/var/lib/postgressql/data
+        environment:
+            POSTGRES_DB: guac_db
+        env_file: id.env
+
+    guac-server:
+        image: guacamole/guacd:0.9.13-incubating
+        container_name: guac-server
+        hostname: guac-server
+        restart: always
+        networks:
+            - media
+
+    guacamole:
+        image: guacamole/guacamole:0.9.13-incubating
+        container_name: guacamole
+        restart: always
+        networks:
+            - media
+        ports:
+            - 8282:8080
+        environment:
+            POSTGRES_HOSTNAME: guac-db
+            GUACD_HOSTNAME: guac-server
+            POSTGRES_DATABASE: guac_db
+            GUACD_PORT: 4822
+        env_file: id.env
+        depends_on:
+            - guac-db
+            - guac-server
+
+networks:
+    media:
+        external: true
+        

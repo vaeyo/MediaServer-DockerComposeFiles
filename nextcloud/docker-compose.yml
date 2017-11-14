@@ -1,0 +1,28 @@
+version: '2'
+
+services:
+  nextcloud-db:
+    image: mariadb
+    container_name: nextcloud-db
+    restart: always
+    networks:
+      - media
+    volumes:
+      - /srv/appdata/nextcloud/db:/var/lib/mysql
+    env_file: id.env
+
+  nextcloud:
+    image: nextcloud:fpm
+    container_name: nextcloud
+    restart: always
+    networks:
+      - media
+    links:
+      - nextcloud-db
+    volumes:
+      - /srv/appdata/nextcloud/data:/var/www/html
+
+networks:
+    media:
+        external: true
+        

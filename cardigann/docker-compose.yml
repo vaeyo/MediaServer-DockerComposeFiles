@@ -1,0 +1,22 @@
+version: '2'
+
+services:
+    cardigann:
+        image: linuxserver/cardigann
+        container_name: cardigann
+        restart: always
+        networks:
+            - media
+        ports:
+            - 5060:5060
+        volumes: 
+            - /srv/appdata/cardigann:/config
+        environment:
+            PUID: ${userid}
+            PGID: ${groupid}
+            TZ: ${time}
+
+networks:
+    media:
+        external: true            
+                    

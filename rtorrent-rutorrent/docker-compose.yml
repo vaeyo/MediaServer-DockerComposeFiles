@@ -1,0 +1,25 @@
+version: '2'
+
+services:
+    rtorrent:
+        image: linuxserver/rutorrent
+        container_name: rtorrent
+        restart: always
+        networks:
+            - media        
+        ports:
+            - 5000:5000
+            - 6881:6881/udp
+            - 8180:80
+            - 51413:51413
+        volumes:
+            - /srv/appdata/rtorrent:/config
+            - /srv/downloads:/downloads
+        environment:
+            PUID: ${userid}
+            PGID: ${groupid}
+            TZ: ${time}
+
+networks:
+    media:
+        external: true              

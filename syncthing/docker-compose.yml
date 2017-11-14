@@ -1,0 +1,25 @@
+version: '2'
+
+services:
+    syncthing:
+        image: linuxserver/syncthing
+        container_name: syncthing
+        restart: always
+        networks:
+            - media
+        ports:
+            - 8384:8384
+            - 22000:22000
+            - 21027:21027/udp
+        volumes:
+            - /srv/syncfolder:/srv/data
+            - /srv/appdata/syncthing:/srv/config
+        environment:
+            PUID: ${userid}
+            PGID: ${groupid}
+            UMASK_SET: 022
+
+networks:
+    media:
+        external: true            
+                    

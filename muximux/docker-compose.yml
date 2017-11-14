@@ -1,0 +1,21 @@
+version: '2'
+
+services:
+    muximux:
+        image: linuxserver/muximux
+        container_name: muximux
+        restart: always
+        networks:
+            - media
+        ports:
+            - 8888:80
+        volumes:
+            - /srv/appdata/muximux:/config
+        environment:
+            PUID: ${userid}
+            PGID: ${groupid}
+            TZ: ${time}
+
+networks:
+    media:
+        external: true        

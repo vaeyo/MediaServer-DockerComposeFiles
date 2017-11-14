@@ -1,0 +1,22 @@
+version: '2'
+
+services:
+    nzbhydra:
+        image: linuxserver/hydra
+        container_name: nzbhydra
+        restart: always
+        networks:
+            - media        
+        ports:
+            - 5075:5075
+        volumes:
+            - /srv/appdata/nzbhydra:/config
+            - /srv/downloads:/downloads
+        environment:
+            PUID: ${userid}
+            PGID: ${groupid}
+            TZ: ${time}
+
+networks:
+    media:
+        external: true

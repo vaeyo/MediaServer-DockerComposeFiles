@@ -1,0 +1,24 @@
+version: '2'
+
+services:
+    lidarr:
+        image: volikon/lidarr
+        container_name: lidarr
+        restart: always
+        networks:
+            - media
+        ports:
+            - 8686:8686
+        volumes:
+            - /srv/appdata/lidarr:/config
+            - /srv/media:/music
+            - /srv/downloads:/downloads
+            - /etc/localtime:/etc/localtime:ro
+        environment:
+            PUID: ${userid}
+            PGID: ${groupid}
+            TZ: ${time}
+
+networks:
+    media:
+        external: true

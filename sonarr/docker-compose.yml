@@ -1,0 +1,24 @@
+version: '2'
+
+services:
+    sonarr:
+        image: linuxserver/sonarr
+        container_name: sonarr
+        restart: always
+        networks:
+            - media        
+        ports:
+            - 8989:8989
+        volumes:
+            - /srv/appdata/sonarr:/config
+            - /srv/downloads:/downloads
+            - /srv/media:/tv
+            - /etc/localtime:/etc/localtime:ro
+        environment:
+            PUID: ${userid}
+            PGID: ${groupid}
+            TZ: ${time}
+
+networks:
+    media:
+        external: true          

@@ -1,0 +1,29 @@
+version: '2'
+
+services:
+    plex:
+        image: linuxserver/plex
+        container_name: plex
+        restart: always
+        networks:
+            - media        
+        ports:
+            - 32400:32400
+            - 32400:32400/udp
+            - 32469:32469
+            - 32469:32469/udp
+            - 5353:5353/udp
+            - 1900:1900/udp
+        volumes:
+            - /srv/appdata/plex:/config
+            - /srv/appdata/plex/transcode:/transcode
+            - /srv/media:/data
+        environment:
+            PUID: ${userid}
+            PGID: ${groupid}
+            TZ: ${time}
+
+networks:
+    media:
+        external: true                        
+            

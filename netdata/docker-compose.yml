@@ -1,0 +1,20 @@
+version: '2'
+
+services: 
+    netdata:
+        image: titpetric/netdata
+        container_name: netdata
+        restart: always
+        networks:
+            - media
+        ports:
+            - 19999:19999
+        volumes:
+            - /proc:/host/proc:ro
+            - /sys:/host/sys:ro
+            - /var/run/docker.sock:/var/run/docker.sock:ro
+            
+networks:
+    media:
+        external: true            
+                

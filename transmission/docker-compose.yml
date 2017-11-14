@@ -1,0 +1,26 @@
+version: '2'
+
+services:
+    transmission:
+        image: linuxserver/transmission
+        container_name: transmission
+        restart: always
+        networks:
+            - media
+        ports:
+            - 9091:9091
+            - 51413:51413
+            - 51413:51413/udp
+        volumes:
+            - /srv/appdata/transmission:/config
+            - /srv/downloads:/downloads
+            - /srv/downloads/watch:/watch
+        environment:
+            PUID: ${userid}
+            PGID: ${groupid}
+            TZ: ${time}
+
+networks:
+    media:
+        external: true            
+        

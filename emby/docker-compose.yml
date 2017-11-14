@@ -1,0 +1,24 @@
+version: '2'
+
+services:
+    emby:
+        image: binhex/arch-emby
+        container_name: emby
+        restart: always
+        networks:
+            - media
+        ports:
+            - 8096:8096
+        volumes:
+            - /srv/appdata/emby:/config
+            - /srv/media:/media
+            - /etc/localtime:/etc/localtime:ro
+        environment:
+            PUID: ${userid}
+            PGID: ${groupid}
+            TZ: ${time}
+            UMASK_SET: 022
+
+networks:
+    media:
+        external: true

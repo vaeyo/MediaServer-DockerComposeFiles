@@ -1,0 +1,25 @@
+version: '2'
+
+services:
+  shellinabox:
+    image: sspreitzer/shellinabox
+    container_name: shellinabox
+    restart: always
+    networks:
+      - media
+    ports:
+      - 4100:4200
+    environment:
+      - SIAB_ADDUSER=false
+      - SIAB_USER=root
+      - SIAB_GROUP=root
+      - SIAB_USERID=0
+      - SIAB_GROUPID=0
+      - SIAB_PASSWORD=12345
+      - SIAB_SHELL=/bin/bash
+      - SIAB_HOME=/
+      - SIAB_SUDO=true
+
+networks:
+    media:
+        external: true

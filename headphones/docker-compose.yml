@@ -1,0 +1,24 @@
+version: '2'
+
+services:
+    headphones:
+        image: linuxserver/headphones
+        container_name: headphones
+        restart: always
+        networks:
+            - media
+        ports:
+            - 1818:8181
+        volumes:
+            - /srv/appdata/headphones:/config
+            - /srv/downloads:/downloads
+            - /srv/media/music:/music
+        environment:
+            PUID: ${userid}
+            PGID: ${groupid}
+            TZ: ${time}
+
+networks:
+    media:
+        external: true            
+                

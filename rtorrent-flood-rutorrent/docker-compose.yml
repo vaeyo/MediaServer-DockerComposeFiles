@@ -1,0 +1,22 @@
+version: '2'
+
+services:
+    rtorrent:
+        image: vaeyo/rtorrent
+        container_name: rutorrent-flood
+        restart: always
+        networks:
+            - media        
+        ports:
+            - 3000:3000
+            - 6881:6881/udp
+            - 8080:80
+            - 50000:50000
+        volumes:
+            - /srv/downloads:/downloads
+            - /srv/appdata/rtorrent:/config
+            - /etc/localtime:/etc/localtime:ro
+
+networks:
+    media:
+        external: true

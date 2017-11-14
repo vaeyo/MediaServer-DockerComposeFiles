@@ -1,5 +1,5 @@
 #### This repo contains a docker-compose file for the following apps:
-(There may be files for apps not listed below but there will never be apps listed below without docker-compose files)
+###### (There may be files for apps not listed below but there will never be apps listed below without docker-compose files)
 
 All you will need to do is set a few variables. A few images (nextcloud, guacamole, owncloud) have individual id.env files included to set your passwords, etc. For the rest of the apps you will need to set three environmental variables which for most linux distrubutions can be done automatically with:
 ```
@@ -11,8 +11,9 @@ to ensure it persists through reboot I usually do the following. Run these as yo
 ```
 echo "export userid=$(id -u)" | tee -a ~/.bashrc
 echo "export groupid=$(id -g)" | tee -a ~/.bashrc
-echo "export time=$(cat /etc/timezone)" | ~/.bashrc
+echo "export time=$(cat /etc/timezone)" | tee -a ~/.bashrc
 ```
+Replace bashrc if you are using a different shell such as zsh or fish. 
 
 These files are preconfigured to run our media server under the /srv directory. Three subdirectories will be created: /srv/downloads, /srv/media, /srv/appdata. 
 
